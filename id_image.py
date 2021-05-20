@@ -21,11 +21,7 @@ def id_image(path):
         return []
     if str(path).lower().endswith("nef") or str(path).lower().endswith("orf"): # 
         with rawpy.imread(path) as raw:
-            thumb = raw.extract_thumb()
-            if thumb.format == rawpy.ThumbFormat.JPEG:
-                rgb = image.img_to_array(thumb)
-            else:
-                rgb = raw.postprocess()
+            rgb = raw.postprocess()
     else:
         rgb = image.img_to_array(image.load_img(path))
         
