@@ -15,7 +15,7 @@ from pathlib import Path
 resnet = ResNet50(weights='imagenet')
 
 def id_image(path):
-
+    print(".. " + path)
     cropper = CenterCrop(height=2000, width=2000)
     if not Path(path).exists():
         return []

@@ -35,8 +35,17 @@ def tag_image(path, tags):
         tag = soup.new_tag('rdf:li')
         tag.string = 'keras'
         subjectList = subject.find('rdf:Bag')
-        subjectList.append( tag)
+
+        if subjectList is None:
+            subjectList = soup.new_tag('rdf:Bag')
+            subject.append(subjectList)
+        subjectList.append(tag)
+        
         hsubjectList = hsubject.find('rdf:Bag')
+        if hsubjectList is None:
+            hsubjectList = soup.new_tag('rdf:Bag')
+            hsubject.append(hsubjectList)
+
         for t in tags:
             tagT = soup.new_tag('rdf:li')
             tagT.string = t
